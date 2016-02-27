@@ -6,9 +6,9 @@ from python_mysql_dbconfig import read_db_config
 from mysql.connector import MySQLConnection, Error
 
 #Variables
-clientsConnected = []
-teacherDisplay=[]
-studentArray = []
+clientsConnected = [] #list holding addresses of connected student computers
+teacherDisplay=[] #list holding addresses of connected teacher displays
+studentArray = [] #
 className = ""
 consequenceArray= {}
 usernames={}
@@ -306,9 +306,14 @@ mainWindowFrame = Frame(mainWindow, bg="white")
 mainWindowFrame.columnconfigure(0,minsize=250)
 mainWindowFrame.pack(side="top", fill="both", padx=10, pady=10)
 
+#Group selection window
 selectGroup = Toplevel()
 selectGroup.withdraw()
 #selectGroup.overrideredirect(1)
+
+#Seating plan window
+seatingPlan = Toplevel()
+seatingPlan.withdraw()
 
 #Create toolbar/menu at top
 menuBar = Menu(mainWindowFrame,bg='white', fg="#2c255b")
@@ -316,7 +321,6 @@ fileMenuList = Menu(menuBar,tearoff=0,bg='white', fg="#2c255b")
 fileMenuList.add_command(label="Load Class",command=loadClass)
 menuBar.add_cascade(label="File",menu=fileMenuList)
 mainWindow.config(menu=menuBar)
-
 
 #Create Student List Label
 label_studentList = Label(mainWindowFrame,text="Class: None",font=("Gill Sans MT",20), fg="#2c255b", bg="white")
