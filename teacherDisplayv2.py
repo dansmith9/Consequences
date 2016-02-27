@@ -55,7 +55,9 @@ def addStudent(name, cons):
     global i
 
     currentLabels=[emptyLabels[i][0],emptyLabels[i][1]]
-    i+=1                  
+    print("addStudent: i before increment =",i)
+    i+=1
+    print("addStudent: i after increment =",i)
     studentLabels[name]=currentLabels
     studentLabels[name][0].config(text=name)
     studentLabels[name][1].config(text="C"+str(cons))
@@ -74,11 +76,13 @@ def clearBoard():
     
     for j in range(35):
         if j==0:
-            emptyLabels[j][0].config(text="Nobody on consequences! Well Done!")
+            emptyLabels[j][0].config(text="Nobody on consequences!")
             emptyLabels[j][1].config(text="")
         else:
             emptyLabels[j][0].config(text="")
             emptyLabels[j][1].config(text="")
+
+    i=0
 
 def awaitData():
     global root
@@ -106,7 +110,7 @@ dummyFlag=True
 consLabels={}
 rowHolder=''
 
-hostname = "STF-DSK-221"
+hostname = "STF-TAB-024"
 serverPort = 8082
 clientPort = randint(0,65535)
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -121,13 +125,11 @@ connectToServer()
 root = Tk()
 root.config(bg='#2c255b')
 root.columnconfigure(0,minsize=768,weight=1)
+root.attributes('-fullscreen',True)
 
-consFrame= LabelFrame(root,text="Consequences",bg='white',fg="#2c255b",font=("Gill Sans MT",50))
+consFrame= LabelFrame(root,text="Consequences",bg='white',fg="#2c255b",font=("Gill Sans MT",100))
 consFrame.columnconfigure(0,minsize=760, weight=1)
-consFrame.grid(padx=5,pady=5)
-
-#dummyLabel = Label(consFrame,text="Nobody on consequences! Well Done!",bg="#d6d6d6",fg="#2c255b",font=("Gill Sans MT",20))
-#dummyLabel.grid(sticky=W+E)
+consFrame.grid(padx=5,pady=5,sticky=W+E)
 
 bgcolour=True
 emptyLabels={}
@@ -149,13 +151,13 @@ for i in range(35):
     rowHolder.columnconfigure(1,weight=1)
 
     if i==0:
-        nameLabel=Label(rowHolder,text="Nobody on consequences! Well Done!",font=("Gill Sans MT",20),bg=background,fg='#2c255b')
+        nameLabel=Label(rowHolder,text="Nobody on consequences!",font=("Gill Sans MT",50),bg=background,fg='#2c255b')
         nameLabel.grid(row=i,column=0,sticky=W,ipadx=10)
     else:
-        nameLabel=Label(rowHolder,text="",font=("Gill Sans MT",20),bg=background,fg='#2c255b')
+        nameLabel=Label(rowHolder,text="",font=("Gill Sans MT",50),bg=background,fg='#2c255b')
         nameLabel.grid(row=i,column=0,sticky=W,ipadx=10)
 
-    consLabel=Label(rowHolder,text="",font=("Gill Sans MT",20),bg=background,fg='#2c255b')
+    consLabel=Label(rowHolder,text="",font=("Gill Sans MT",50),bg=background,fg='#2c255b')
     consLabel.grid(row=i,column=1,sticky=E,ipadx=10)
     emptyLabels[i]=[nameLabel,consLabel]
 
